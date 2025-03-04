@@ -15,6 +15,8 @@ class UserController extends Controller
             [
                 'username' => 'manager',
                 'nama' => 'Manager',
+                'password' => Hash::make('12345'),
+                'level_id' => 2
             ],
         );
         return view('user', ['data' => $user]);
