@@ -13,14 +13,14 @@ class UserController extends Controller
         
         $user = UserModel::create(
             [
-                'username' => 'manager44',
-                'nama' => 'Manager 44',
+                'username' => 'manager55',
+                'nama' => 'Manager55',
                 'password' => Hash::make('12345'),
                 'level_id' => 2
             ],
         );
         
-        $user->username = 'manager45';
+        $user->username = 'manager56';
 
         $user->isDirty(); // true
         $user->isDirty('username'); // true
@@ -38,6 +38,6 @@ class UserController extends Controller
         $user->isClean(); // true
         dd($user->isDirty());
 
-        return view('user', ['data' => $user]);
+        /*return view('user', ['data' => $user]);*/
     }
 }
