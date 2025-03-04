@@ -11,15 +11,14 @@ class UserController extends Controller
     public function index()
     {
         
-        $user = UserModel::create(
+        $user = UserModel::firstOrCreate(
             [
                 'username' => 'manager33',
                 'nama' => 'Manager Tiga Tiga',
                 'password' => Hash::make('12345'),
                 'level_id' => 2
-            ],
+            ]
         );
-        
         $user->username = 'manager56';
 
         $user->isDirty(); // true
@@ -36,8 +35,7 @@ class UserController extends Controller
 
         $user->isDirty(); // false
         $user->isClean(); // true
-        dd($user->isDirty());
 
-        return view('user', ['data' => $user]);
+        dd($user->isDirty());
     }
 }
