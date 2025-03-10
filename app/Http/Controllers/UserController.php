@@ -48,4 +48,28 @@ class UserController extends Controller
             ->rawColumns(['aksi']) //menandakan kolom tersebut adalah html
             ->make(true);
     }
+
+    // Menampilkan halaman form tambah user
+    public function create()
+    {
+        $breadcrumb = (object) [
+            'title' => 'Tambah User',
+            'list' => ['Home', 'User', 'Tambah']
+        ];
+
+        $page = (object) [
+            'title' => 'Tambah user baru'
+        ];
+
+        $level = LevelModel::all(); // ambil data level untuk ditampilkan di form
+        $activeMenu = 'user'; // set menu yang sedang aktif
+
+        return view('user.create', [
+            'breadcrumb' => $breadcrumb,
+            'page' => $page,
+            'level' => $level,
+            'activeMenu' => $activeMenu
+        ]);
+    }
+
 }
