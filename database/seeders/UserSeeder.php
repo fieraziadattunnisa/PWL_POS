@@ -16,21 +16,21 @@ class UserSeeder extends Seeder
     {
         $data = [
             [
-                'user_id' => 1,
+                'user_id' => 12,
                 'level_id' => 1,
                 'username' => 'admin',
                 'nama' => 'Administrator',
                 'password' => Hash::make('12345'), // class untuk mengenkripsi/hash password
             ],
             [
-                'user_id' => 2,
+                'user_id' => 14,
                 'level_id' => 2,
                 'username' => 'manager',
                 'nama' => 'Manager',
                 'password' => Hash::make('12345'),
             ],
             [
-                'user_id' => 3,
+                'user_id' => 19,
                 'level_id' => 3,
                 'username' => 'staff',
                 'nama' => 'Staff/Kasir',
