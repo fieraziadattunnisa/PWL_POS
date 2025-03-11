@@ -9,15 +9,15 @@
             </div>
         </div>
         <div class="card-body">
+            @if (session('success'))
+                <div class="alert alert-success">{{ session('success') }}</div>
+            @endif
             <table class="table table-bordered table-striped table-hover table-sm" id="table_user">
                 <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Username</th>
-                        <th>Nama</th>
-                        <th>Level Pengguna</th>
-                        <th>Aksi</th>
-                    </tr>
+                    <tr><th>ID</th><th>Username</th><th>Nama</th><th>Level Pengguna</th><th>Aksi</th></tr>
+                </thead>
+            </table>
+        </div>
                 </thead>
             </table>
         </div>
