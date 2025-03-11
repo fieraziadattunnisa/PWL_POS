@@ -99,7 +99,7 @@ class KategoriController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'kategori_kode' => 'required|string|max:3',
+            'kategori_kode' => 'required|string|max:6',
             'kategori_nama' => 'required|string',
         ]);
 
