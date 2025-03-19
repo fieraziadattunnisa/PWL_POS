@@ -17,7 +17,7 @@
                 <div class="form-group">
                     <label>Nama Kategori</label>
                     <input value="" type="text" name="kategori_nama" id="kategori_nama" class="form-control" required>
-                    <small id="error-level_nama" class="error-text form-text text-danger"></small>
+                    <small id="error-kategori_nama" class="error-text form-text text-danger"></small>
                 </div>
             </div>
             <div class="modal-footer">
