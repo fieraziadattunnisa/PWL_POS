@@ -146,7 +146,7 @@ class BarangController extends Controller
             'barang_kode' => 'required|string|min:3|unique:m_barang,barang_kode,'.$id.',barang_id',
             'barang_nama' => 'required|string|max:100',
             'harga_beli' => 'required|numeric',
-            'harga_jual' => 'required|numeric',
+            'harga_jual' => 'required|integer',
             'kategori_id' => 'required|integer'
             ];
 
@@ -198,27 +198,32 @@ class BarangController extends Controller
     }
 
     // Delete ajax
-    public function delete_ajax(Request $request, $id)
+    public function delete_ajax(Request $request, $id) 
     {
+        // cek apakah request dari ajax
         if ($request->ajax() || $request->wantsJson()) {
-            try {
-                $user = BarangModel::find($id);
-                if ($user) {
-                    $user->delete();
+            $barang = BarangModel::find($id);
+            if ($barang) {
+                try {
+                    // Menghapus data barang berdasarkan ID
+                    BarangModel::destroy($id);
+                    
                     return response()->json([
                         'status' => true,
-                        'message' => 'Data berhasil dihapus'
+                        'message' => 'Data barang berhasil dihapus'
                     ]);
-                } else {
+                } catch (\Illuminate\Database\QueryException $e) {
+                    // Jika terjadi error ketika menghapus data,
+                    // redirect kembali ke halaman dengan pesan error
                     return response()->json([
                         'status' => false,
-                        'message' => 'Data tidak ditemukan'
+                        'message' => 'Data barang gagal dihapus karena masih terdapat tabel lain yang terkait dengan data ini'
                     ]);
                 }
-            } catch (\Exception $e) {
+            } else {
                 return response()->json([
                     'status' => false,
-                    'message' => 'Data tidak dapat dihapus karena terhubung dengan data lain'
+                    'message' => 'Data tidak ditemukan'
                 ]);
             }
         }
