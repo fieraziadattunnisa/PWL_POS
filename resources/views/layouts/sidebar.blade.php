@@ -66,7 +66,7 @@
       </li>
       <li class="nav-header">Opsi</li>
         <li class="nav-item">
-          <a href="{{ url('/logout') }}" class="nav-link {{ ($activeMenu == 'stok') ? 'active' : ''}}">
+          <a href="{{ url('/logout') }}" class="nav-link {{ ($activeMenu == '') ? 'active' : ''}}">
             <i class="nav-icon fas fa-sign-out-alt"></i>
             <p>Logout</p>
           </a>
