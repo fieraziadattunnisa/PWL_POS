@@ -24,6 +24,8 @@ Route::pattern('id', '[0-9]+'); // artinya ketika ada parameter {id}, maka harus
 Route::get('login', [AuthController::class, 'login'])->name('login');
 Route::post('login', [AuthController::class, 'postlogin']);
 Route::get('logout', [AuthController::class, 'logout'])->middleware('auth');
+Route::get('/register', [AuthController::class, 'register'])->name('register');
+ Route::post('/register', [AuthController::class, 'store'])->name('register.store');
 Route::middleware(['auth'])->group(function () { // artinya semua route di dalam group ini harus login dulu
     // masukkan semua route yang perlu autentikasi di sini
     Route::get('/', function () {
@@ -32,7 +34,7 @@ Route::middleware(['auth'])->group(function () { // artinya semua route di dalam
 
     Route::get('/', [WelcomeController::class, 'index']);
     Route::group(['prefix' => 'user'], function () {
-        Route::middleware('authorize:ADN,')->group(function () {
+        Route::middleware('authorize:ADM,')->group(function () {
             Route::get('/', [UserController::class, 'index']);          // menampilkan halaman awal user
             Route::post('/list', [UserController::class, 'list']);      // menampilkan data user dalam bentuk json untuk datatables
             Route::get('/create', [UserController::class, 'create']);   // menampilkan halaman form tambah user 
@@ -53,7 +55,7 @@ Route::middleware(['auth'])->group(function () { // artinya semua route di dalam
 
 
     Route::group(['prefix' => 'level'], function () {
-        Route::middleware('authorize:ADN')->group(function () {
+        Route::middleware('authorize:ADM')->group(function () {
             Route::get('/', [LevelController::class, 'index']);                             // menampilkan halaman awal Level
             Route::post('/list', [LevelController::class, 'list']);                         // menampilkan data Level dalam bentuk json untuk datatables
             Route::get('/create', [LevelController::class, 'create']);                      // menampilkan halaman form tambah Level
@@ -73,7 +75,7 @@ Route::middleware(['auth'])->group(function () { // artinya semua route di dalam
     });
 
     Route::group(['prefix' => 'kategori'], function () {
-        Route::middleware('authorize:ADN,MNG')->group(function () {
+        Route::middleware('authorize:ADM,MNG')->group(function () {
             Route::get('/', [KategoriController::class, 'index']);                          // menampilkan halaman awal kategori
             Route::post('/list', [KategoriController::class, 'list']);                      // menampilkan data kategori dalam bentuk json untuk datatables
             Route::get('/create', [KategoriController::class, 'create']);                   // menampilkan halaman form tambah kategori
@@ -93,7 +95,7 @@ Route::middleware(['auth'])->group(function () { // artinya semua route di dalam
     });
 
     Route::group(['prefix' => 'supplier'], function () {
-        Route::middleware('authorize:ADN,MNG')->group(function () {
+        Route::middleware('authorize:ADM,MNG')->group(function () {
             Route::get('/', [SupplierController::class, 'index']);                          // menampilkan halaman awal kategori
             Route::post('/list', [SupplierController::class, 'list']);                      // menampilkan data kategori dalam bentuk json untuk datatables
             Route::get('/create', [SupplierController::class, 'create']);                   // menampilkan halaman form tambah kategori
@@ -113,7 +115,7 @@ Route::middleware(['auth'])->group(function () { // artinya semua route di dalam
     });
 
     Route::group(['prefix' => 'barang'], function () {
-        Route::middleware('authorize:ADN,MNG,STF')->group(function () {
+        Route::middleware('authorize:ADM,MNG,STF')->group(function () {
             Route::get('/', [BarangController::class, 'index']);                            // menampilkan halaman awal barang
             Route::post('/list', [BarangController::class, 'list']);                        // menampilkan data barang dalam bentuk json untuk datatables
             Route::get('/create', [BarangController::class, 'create']);                     // menampilkan halaman form tambah barang
