@@ -42,8 +42,6 @@ Route::pattern('id', '[0-9]+'); //artinya ketika ada parameter {id}, maka harus 
 Route::get('/login', [AuthController::class, 'login'])->name('login');
 Route::post('/login', [AuthController::class, 'postlogin']);
 Route::get('/logout', [AuthController::class, 'logout'])->middleware('auth');
-Route::get('/register', [AuthController::class, 'register'])->name('register');
-Route::post('/register', [AuthController::class, 'store'])->name('register.store');
 
 Route::middleware(['auth'])->group(function() { 
     
@@ -60,7 +58,7 @@ Route::middleware(['auth'])->group(function() {
         Route::get('/{id}/delete_ajax', [UserController::class, 'confirm_ajax']); 
         Route::delete('/{id}/delete_ajax', [UserController::class, 'delete_ajax']); 
     });
-    
+
     Route::group(['prefix' => 'level'], function () {
         Route::get('/', [LevelController::class, 'index']); 
         Route::post('/list', [LevelController::class, 'list']); 
@@ -106,9 +104,7 @@ Route::middleware(['auth'])->group(function() {
         Route::put('/{id}/update_ajax', [BarangController::class, 'update_ajax']); 
         Route::get('/{id}/show_ajax', [BarangController::class, 'show_ajax']); 
         Route::get('/{id}/delete_ajax', [BarangController::class, 'confirm_ajax']); 
-        Route::delete('/{id}/delete_ajax', [BarangController::class, 'delete_ajax']);
-        Route::get('/import', [BarangController::class, 'import']); //ajax form upload excel
-        Route::post('/import_ajax', [BarangController::class, 'import_ajax']); // ajax import excel
+        Route::delete('/{id}/delete_ajax', [BarangController::class, 'delete_ajax']); 
     });
 
 }); 
