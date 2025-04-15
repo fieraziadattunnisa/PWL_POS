@@ -7,6 +7,7 @@ use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\LevelController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WelcomeController;
+use App\Http\Controllers\ProfilController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -62,6 +63,7 @@ Route::middleware(['auth'])->group(function() {
         Route::get('/import', [UserController::class, 'import']); //ajax form upload excel
         Route::post('/import_ajax', [UserController::class, 'import_ajax']); //ajax import excel
         Route::get('/export_excel', [UserController::class, 'export_excel']); // export excel
+        Route::get('/export_pdf', [UserController::class, 'export_pdf']); // export pdf
     });
     
     Route::group(['prefix' => 'level'], function () {
@@ -77,6 +79,7 @@ Route::middleware(['auth'])->group(function() {
         Route::get('/import', [LevelController::class, 'import']); //ajax form upload excel
         Route::post('/import_ajax', [LevelController::class, 'import_ajax']); //ajax import excel
         Route::get('/export_excel', [LevelController::class, 'export_excel']); // export excel
+        Route::get('/export_pdf', [LevelController::class, 'export_pdf']); // export pdf
     });
 
     Route::group(['prefix' => 'kategori'], function () {
@@ -92,6 +95,7 @@ Route::middleware(['auth'])->group(function() {
         Route::get('/import', [KategoriController::class, 'import']); //ajax form upload excel
         Route::post('/import_ajax', [KategoriController::class, 'import_ajax']); //ajax import excel
         Route::get('/export_excel', [KategoriController::class, 'export_excel']); // export excel
+        Route::get('/export_pdf', [KategoriController::class, 'export_pdf']); // export pdf
     });
 
     Route::group(['prefix' => 'supplier'], function () {
@@ -107,6 +111,7 @@ Route::middleware(['auth'])->group(function() {
         Route::get('/import', [SupplierController::class, 'import']); //ajax form upload excel
         Route::post('/import_ajax', [SupplierController::class, 'import_ajax']); //ajax import excel
         Route::get('/export_excel', [SupplierController::class, 'export_excel']); // export excel
+        Route::get('/export_pdf', [SupplierController::class, 'export_pdf']); // export pdf
     });
 
     Route::group(['prefix' => 'barang'], function () {
@@ -122,6 +127,16 @@ Route::middleware(['auth'])->group(function() {
         Route::get('/import', [BarangController::class, 'import']); //ajax form upload excel
         Route::post('/import_ajax', [BarangController::class, 'import_ajax']); // ajax import excel
         Route::get('/export_excel', [BarangController::class, 'export_excel']); // export excel
+        Route::get('/export_pdf', [BarangController::class, 'export_pdf']); // export pdf
+    });
+
+
+    Route::group(['prefix' => 'profil'], function () {
+        Route::get('/', [ProfilController::class, 'index'])->name('profil.index');
+        Route::get('/edit', [ProfilController::class, 'edit'])->name('profil.edit');
+        Route::post('/update', [ProfilController::class, 'update'])->name('profil.update');
+        Route::get('/hapus-foto', [ProfilController::class, 'deleteFoto'])->name('profil.deleteFoto');
+
     });
 
 }); 
