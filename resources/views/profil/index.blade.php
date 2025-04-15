@@ -15,7 +15,7 @@
         {{-- Foto Profil --}}
         <div class="mx-auto mb-3">
             <img
-                src="{{ $profil && $profil->foto ? asset('storage/foto/' . $profil->foto) : asset('storage/foto/default.png') }}"
+                src="{{ $profil && $profil->foto ? asset('storage/foto/' . $profil->foto) : asset('storage/foto/1744677638.jpg') }}"
                 alt="Foto Profil"
                 class="rounded-circle"
                 style="width: 150px; height: 150px; object-fit: cover; border: 3px solid #ccc;">

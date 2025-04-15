@@ -45,10 +45,9 @@ Route::post('/login', [AuthController::class, 'postlogin']);
 Route::get('/logout', [AuthController::class, 'logout'])->middleware('auth');
 Route::get('/register', [AuthController::class, 'register'])->name('register');
 Route::post('/register', [AuthController::class, 'store'])->name('register.store');
+Route::get('/', [WelcomeController::class, 'index']);
 
 Route::middleware(['auth'])->group(function () {
-
-    Route::get('/', [WelcomeController::class, 'index']);
 
     Route::group(['prefix' => 'user'], function () {
         Route::get('/', [UserController::class, 'index']);
@@ -83,19 +82,19 @@ Route::middleware(['auth'])->group(function () {
     });
 
     Route::group(['prefix' => 'kategori'], function () {
-        Route::get('/', [KategoriController::class, 'index']);
+        Route::get('/', [KategoriController::class, 'index']); 
         Route::post('/list', [KategoriController::class, 'list']);
-        Route::get('/create_ajax', [KategoriController::class, 'create_ajax']);
-        Route::post('/ajax', [KategoriController::class, 'store_ajax']);
-        Route::get('/{id}/edit_ajax', [KategoriController::class, 'edit_ajax']);
-        Route::put('/{id}/update_ajax', [KategoriController::class, 'update_ajax']);
-        Route::get('/{id}/show_ajax', [KategoriController::class, 'show_ajax']);
-        Route::get('/{id}/delete_ajax', [KategoriController::class, 'confirm_ajax']);
+        Route::get('/create', [KategoriController::class, 'create']);
+        Route::post('/store', [KategoriController::class, 'store']);
+        Route::get('/create_ajax', [KategoriController:: class, 'create_ajax']); 
+        Route::post('/ajax', [KategoriController::class, 'store_ajax']); 
+        Route::get('/{id}/edit_ajax', [KategoriController::class, 'edit_ajax']); 
+        Route::put('/{id}/update_ajax', [KategoriController::class, 'update_ajax']); 
+        Route::get('/{id}/show_ajax', [KategoriController::class, 'show_ajax']); 
+        Route::get('/{id}/delete_ajax', [KategoriController::class, 'confirm_ajax']); 
         Route::delete('/{id}/delete_ajax', [KategoriController::class, 'delete_ajax']);
         Route::get('/import', [KategoriController::class, 'import']); //ajax form upload excel
         Route::post('/import_ajax', [KategoriController::class, 'import_ajax']); //ajax import excel
-        Route::get('/export_excel', [KategoriController::class, 'export_excel']); // export excel
-        Route::get('/export_pdf', [KategoriController::class, 'export_pdf']); // export pdf
     });
 
     Route::group(['prefix' => 'supplier'], function () {
