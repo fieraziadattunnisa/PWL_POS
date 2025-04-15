@@ -6,7 +6,7 @@
         <h3 class="card-title">Daftar kategori</h3>
         <div class="card-tools">
             <button onclick="modalAction(`{{ url('/kategori/import') }}`)" class="btn btn-info">Import Kategori</button>
-            <a href="{{ url('/kategori/export_excel') }}" class="btn btn-primary"><i class="fa fa-file-excel"></i> Export Kategori </a>
+            <a href="{{ url('/kategori/create') }}" class="btn btn-primary">Tambah Data</a>
             <button onclick="modalAction(`{{ url('/kategori/create_ajax') }}`)" class="btn btn-success">Tambah Ajax</button>
         </div>
     </div>
@@ -65,9 +65,9 @@
         });
     }
 
-    var dataKategori;
+    var tableKategori;
     $(document).ready(function() {
-        dataKategori = $('#table-kategori').DataTable({
+        tableKategori = $('#table-kategori').DataTable({
             processing: true,
             serverSide: true,
             ajax: {
@@ -114,12 +114,12 @@
 
         $('#table-kategori_filter input').unbind().bind().on('keyup', function(e) {
             if (e.keyCode == 13) {
-                dataKategori.search(this.value).draw();
+                tableKategori.search(this.value).draw();
             }
         });
 
         $('.filter_kategori').change(function() {
-            dataKategori.reload();
+            tableKategori.draw();
         });
     });
 </script>

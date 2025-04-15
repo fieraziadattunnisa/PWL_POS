@@ -6,7 +6,7 @@
         <h3 class="card-title">Daftar level</h3>
         <div class="card-tools">
             <button onclick="modalAction(`{{ url('/level/import') }}`)" class="btn btn-info">Import Level</button>
-            <a href="{{ url('/level/export_excel') }}" class="btn btn-primary"><i class="fa fa-file-excel"></i> Export Level </a>
+            <a href="{{ url('/level/create') }}" class="btn btn-primary">Tambah Data</a>
             <button onclick="modalAction(`{{ url('/level/create_ajax') }}`)" class="btn btn-success">Tambah Ajax</button>
         </div>
     </div>
@@ -65,9 +65,9 @@
         });
     }
 
-    var dataLevel;
+    var tableLevel;
     $(document).ready(function() {
-        dataLevel = $('#table-level').DataTable({
+        tableLevel = $('#table-level').DataTable({
             processing: true,
             serverSide: true,
             ajax: {
@@ -114,12 +114,12 @@
 
         $('#table-level_filter input').unbind().bind().on('keyup', function(e) {
             if (e.keyCode == 13) {
-                dataLevel.search(this.value).draw();
+                tableLevel.search(this.value).draw();
             }
         });
 
         $('.filter_level').change(function() {
-            dataLevel.reload();
+            tableLevel.draw();
         });
     });
 </script>

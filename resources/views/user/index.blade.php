@@ -6,7 +6,7 @@
         <h3 class="card-title">Daftar user</h3>
         <div class="card-tools">
             <button onclick="modalAction(`{{ url('/user/import') }}`)" class="btn btn-info">Import User</button>
-            <a href="{{ url('/user/export_excel') }}" class="btn btn-primary"><i class="fa fa-file-excel"></i> Export User </a>
+            <a href="{{ url('/user/create') }}" class="btn btn-primary">Tambah Data</a>
             <button onclick="modalAction(`{{ url('/user/create_ajax') }}`)" class="btn btn-success">Tambah Ajax</button>
         </div>
     </div>
@@ -66,9 +66,9 @@
         });
     }
 
-    var dataUser;
+    var tableUser;
     $(document).ready(function() {
-        dataUser = $('#table-user').DataTable({
+        tableUser = $('#table-user').DataTable({
             processing: true,
             serverSide: true,
             ajax: {
@@ -122,12 +122,12 @@
 
         $('#table-user_filter input').unbind().bind().on('keyup', function(e) {
             if (e.keyCode == 13) {
-                dataUser.search(this.value).draw();
+                tableUser.search(this.value).draw();
             }
         });
 
         $('.filter_level').change(function() {
-            dataUser.reload();
+            tableUser.draw();
         });
     });
 </script>
