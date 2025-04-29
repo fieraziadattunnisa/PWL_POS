@@ -25,11 +25,12 @@
             display: block;
         }
 
-        img.image {
-            width: auto;
-            height: 80px;
-            max-width: 150px;
-            max-height: 150px;
+        img{ 
+            width: auto; 
+            height: 80px; 
+            max-width: 150px; 
+            max-height: 150px; 
+            margin: 0 0 8px 18px; 
         }
 
         .text-right {
@@ -75,7 +76,7 @@
     <table class="border-bottom-header">
         <tr>
             <td width="15%" class="text-center">
-            <img src="{{ asset('polinema-bw.png') }}" style="height: 70px; width: auto; object-fit: contain;">
+            <img src="{{ asset('polinema1.jpeg') }}" style="height: 70px; width: auto; object-fit: contain;">
             </td>
             <td width="85%">
                 <span class="text-center d-block font-11 font-bold mb-1">KEMENTERIAN PENDIDIKAN, KEBUDAYAAN, RISET, DAN TEKNOLOGI</span>
