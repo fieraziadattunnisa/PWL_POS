@@ -11,12 +11,13 @@ class RegisterController extends Controller
 {
     public function __invoke(Request $request)
     {
-        // Validasi input
+        //set validation
         $validator = Validator::make($request->all(), [
-            'username' => 'required|string|max:255',
-            'nama' => 'required|string|max:255',
-            'password' => 'required|string|min:5|confirmed',
-            'level_id' => 'required|integer|exists:m_level,level_id',
+            'username' => 'required',
+            'nama' => 'required',
+            'password' => 'required|min:5|confirmed',
+            'level_id' => 'required',
+            'image'=> 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048' 
         ]);
 
         //if validation fails
@@ -24,19 +25,21 @@ class RegisterController extends Controller
             return response()->json($validator->errors(), 422);
         }
 
-        // Create user
+        $image = $request->file('image');
+        //create user
         $user = UserModel::create([
             'username' => $request->username,
             'nama' => $request->nama,
             'password' => bcrypt($request->password),
             'level_id' => $request->level_id,
+            'image' => $image->hashName(),
         ]);
 
         //return response JSON user is created
-        if($user) {
+        if ($user) {
             return response()->json([
-                'message' => true,
-                'user' => $user
+                'success' => true,
+                'user' => $user,
             ], 201);
         }
 
@@ -45,4 +48,5 @@ class RegisterController extends Controller
             'success' => false,
         ], 409);
     }
+    
 }
